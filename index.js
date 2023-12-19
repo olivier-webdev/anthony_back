@@ -10,7 +10,7 @@ app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(express.static(path.join(__dirname, "uploads")));
 
-const port = process.env.PORT || 8000;
+const port = process.env.MYSQL_PORT || 8000;
 require("./database/index");
 const routes = require("./routes");
 
@@ -31,6 +31,6 @@ app.use("*", (req, res) => {
 app.get("/", (_, res) => {
   res.send(JSON.stringify("API WORKING"));
 });
-app.listen(port, "0.0.0.0", () => {
+app.listen(port, () => {
   console.log(`serveur Node écoutant sur le port ${port}`);
 });
